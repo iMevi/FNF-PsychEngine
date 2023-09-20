@@ -2141,6 +2141,29 @@ class PlayState extends MusicBeatState
 			case 'Play Sound':
 				if(flValue2 == null) flValue2 = 1;
 				FlxG.sound.play(Paths.sound(value1), flValue2);
+
+			case 'Camera zoom with tween':
+				var split:Array<String> = value2.split(',');
+				var easeE:Null<flixel.tweens.EaseFunction> = FlxEase.circInOut;
+				
+				if(split.length > 1) {
+					switch(split[1]) {
+						case 'circInOut':
+							easeE = FlxEase.circInOut;
+						case 'circIn':
+							easeE = FlxEase.circIn;
+					}
+					FlxTween.num(defaultCamZoom, Std.parseFloat(value1), Std.parseFloat(split[0]), {ease: easeE, onUpdate: (t) -> {
+						defaultCamZoom = Std.parseFloat(Std.string(t));
+						camGame.zoom = Std.parseFloat(Std.string(t));
+					}});
+				}
+				else {
+					FlxTween.num(defaultCamZoom, Std.parseFloat(value1), Std.parseFloat(value2), {ease: FlxEase.circInOut, onUpdate: (t) -> {
+						defaultCamZoom = Std.parseFloat(Std.string(t));
+						camGame.zoom = Std.parseFloat(Std.string(t));
+					}});
+				}
 		}
 		
 		stagesFunc(function(stage:BaseStage) stage.eventCalled(eventName, value1, value2, flValue1, flValue2, strumTime));

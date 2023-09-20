@@ -67,6 +67,13 @@ class ChartingState extends MusicBeatState
 	var eventStuff:Array<Dynamic> =
 	[
 		['', "Nothing. Yep, that's right."],
+		['Camera zoom with tween', "Value 1: easetype\nValue 2: speed,zoom\nsome cool eases:\nback,elastic,bounce,linear,quad,sine"],
+		['camera_target', "v1: bf,dad,gf,anything else will return the camera to normal\nv2: camera speed"],
+		['CameraFlash', "value 1: velocidade\nvalue2: cor"],
+		['Flashfade', "value 1: velocidade\nvalue2: cor"],
+		['Screen Image', "value 1: Nome da imagem\nvalue2: Duração"],
+		['TweenObject', "v1:type\nv2: object,speed,value,ease\nA = alpha, X, Y, Ang = Angle, C = Color\nback,elastic,bounce,linear,quad,sine,expo"],
+		['WBG', "v1:on or off in a smothe way\nv2:on i or off i in a instant way"],
 		['Dadbattle Spotlight', "Used in Dad Battle,\nValue 1: 0/1 = ON/OFF,\n2 = Target Dad\n3 = Target BF"],
 		['Hey!', "Plays the \"Hey!\" animation from Bopeebo,\nValue 1: BF = Only Boyfriend, GF = Only Girlfriend,\nSomething else = Both.\nValue 2: Custom animation duration,\nleave it blank for 0.6s"],
 		['Set GF Speed', "Sets GF head bopping speed,\nValue 1: 1 = Normal speed,\n2 = 1/2 speed, 4 = 1/4 speed etc.\nUsed on Fresh during the beatbox parts.\n\nWarning: Value must be integer!"],
