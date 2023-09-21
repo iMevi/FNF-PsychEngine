@@ -510,6 +510,7 @@ class FreeplayState extends MusicBeatState
 					ballTween = FlxTween.tween(ball, {x: 680, alpha: 1}, 0.2, {ease:FlxEase.circOut});
 					ball.screenCenter(Y);
 			}
+			
 		}
 		
 		/*
