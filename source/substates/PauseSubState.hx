@@ -15,7 +15,6 @@ import options.OptionsState;
 class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
-
 	var menuItems:Array<String> = [];
 	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty', 'Options', 'Exit to menu'];
 	var difficultyChoices = [];
@@ -35,6 +34,7 @@ class PauseSubState extends MusicBeatSubstate
 	public function new(x:Float, y:Float)
 	{
 		super();
+		
 		if(Difficulty.list.length < 2) menuItemsOG.remove('Change Difficulty'); //No need to change difficulty if there is only one!
 
 		if(PlayState.chartingMode)
@@ -75,6 +75,28 @@ class PauseSubState extends MusicBeatSubstate
 		bg.alpha = 0;
 		bg.scrollFactor.set();
 		add(bg);
+
+		//My code
+
+		var pauseBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('pause/pauseBG'));
+		pauseBG.scrollFactor.set();
+		add(pauseBG);
+
+		/*
+		var gamePaused:FlxText = new FlxText(270, 500, 0, 'GAME PAUSED', 32);
+		gamePaused.scrollFactor.set();
+		//gamePaused.setFormat(0xFF0000);
+		add(gamePaused);
+		*/
+
+		var ball:FlxSprite = new FlxSprite(680, 0).loadGraphic(Paths.image('balls/'+PlayState.SONG.song.toLowerCase()));
+		ball.antialiasing = ClientPrefs.data.antialiasing;
+		add(ball);
+
+
+		//FlxG.camera.flash(FlxColor.WHITE, 0.5);
+
+		//Not me
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, PlayState.SONG.song, 32);
 		levelInfo.scrollFactor.set();

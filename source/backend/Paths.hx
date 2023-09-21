@@ -165,7 +165,7 @@ class Paths
 
 	inline static public function json(key:String, ?library:String)
 	{
-		return getPath('data/$key.json', TEXT, library);
+		return getPath('songs/$key.json', TEXT, library);
 	}
 
 	inline static public function shaderFragment(key:String, ?library:String)
@@ -212,9 +212,9 @@ class Paths
 	inline static public function voices(song:String):Any
 	{
 		#if html5
-		return 'songs:assets/songs/${formatToSongPath(song)}/Voices.$SOUND_EXT';
+		return 'songs:assets/songs/${formatToSongPath(song)}/song/Voices.$SOUND_EXT';
 		#else
-		var songKey:String = '${formatToSongPath(song)}/Voices';
+		var songKey:String = '${formatToSongPath(song)}/song/Voices';
 		var voices = returnSound('songs', songKey);
 		return voices;
 		#end
@@ -223,9 +223,9 @@ class Paths
 	inline static public function inst(song:String):Any
 	{
 		#if html5
-		return 'songs:assets/songs/${formatToSongPath(song)}/Inst.$SOUND_EXT';
+		return 'songs:assets/songs/${formatToSongPath(song)}/song/Inst.$SOUND_EXT';
 		#else
-		var songKey:String = '${formatToSongPath(song)}/Inst';
+		var songKey:String = '${formatToSongPath(song)}/song/Inst';
 		var inst = returnSound('songs', songKey);
 		return inst;
 		#end

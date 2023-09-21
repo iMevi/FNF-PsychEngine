@@ -92,6 +92,9 @@ class FreeplayState extends MusicBeatState
 		add(bg);
 		bg.screenCenter();
 
+		ball.antialiasing = ClientPrefs.data.antialiasing;
+		add(ball);
+
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
 
@@ -213,6 +216,9 @@ class FreeplayState extends MusicBeatState
 	var instPlaying:Int = -1;
 	public static var vocals:FlxSound = null;
 	var holdTime:Float = 0;
+	var ball:FlxSprite = new FlxSprite(680, 0);
+	var ballTween:FlxTween;
+	
 	override function update(elapsed:Float)
 	{
 		if (FlxG.sound.music.volume < 0.7)
@@ -461,6 +467,8 @@ class FreeplayState extends MusicBeatState
 		// selector.y = (70 * curSelected) + 30;
 
 		var bullShit:Int = 0;
+		
+		ball.scale.set(1.3, 1.3);
 
 		for (i in 0...iconArray.length)
 		{
@@ -476,6 +484,39 @@ class FreeplayState extends MusicBeatState
 			if (item.targetY == curSelected)
 				item.alpha = 1;
 		}
+		ball.x = 1000;
+
+		if (Paths.image('balls/'+songs[curSelected].songName) == null) {
+			if (ballTween != null) {
+				ballTween.cancel();
+			}
+			ball.x = 2000;
+			return;
+		} else {
+			if (ballTween != null) {
+				ballTween.cancel();
+			}
+			ball.alpha = 0;
+			
+			ball.loadGraphic(Paths.image('balls/'+songs[curSelected].songName));
+			ball.screenCenter(Y);
+			switch(songs[curSelected].songName) {
+				case 'amazon':
+					ballTween = FlxTween.tween(ball, {x: 700, alpha: 1}, 0.2, {ease:FlxEase.circOut});
+				case 'abuse':
+					ballTween = FlxTween.tween(ball, {x: 700, alpha: 1}, 0.2, {ease:FlxEase.circOut});
+					ball.y -= 30;
+				default:
+					ballTween = FlxTween.tween(ball, {x: 680, alpha: 1}, 0.2, {ease:FlxEase.circOut});
+					ball.screenCenter(Y);
+			}
+		}
+		
+		/*
+		switch(songs[curSelected].songName) {
+			case 'amazon':
+				
+		}*/
 		
 		Mods.currentModDirectory = songs[curSelected].folder;
 		PlayState.storyWeek = songs[curSelected].week;

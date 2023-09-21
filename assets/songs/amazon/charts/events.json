@@ -1,0 +1,26 @@
+{
+	"song": {
+		"events": [
+			[
+				2500,
+				[
+					[
+						"Change Scroll Speed",
+						"1",
+						"1"
+					]
+				]
+			],
+			[
+				70303.0303030304,
+				[
+					[
+						"Screen Image",
+						"black screen",
+						"10"
+					]
+				]
+			]
+		]
+	}
+}
